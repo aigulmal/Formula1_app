@@ -1,10 +1,8 @@
 package main.models;
-
 public class StartLogModel {
     private String racerAbbreviation;
     private String startDate;
     private String startTime;
-
     public String getAbbr() {
         return racerAbbreviation;
     }
@@ -14,7 +12,6 @@ public class StartLogModel {
     public String getTime() {
         return startTime;
     }
-
     public void setTime(String time) {
         this.startTime = time;
     }
@@ -24,8 +21,6 @@ public class StartLogModel {
     public String getDate() {
         return startDate;
     }
-
-
     @Override
     public String toString() {
         return "Time  {" +

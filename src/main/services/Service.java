@@ -1,29 +1,17 @@
 package main.services;
-
 import main.dao.DAO;
 import main.models.EndLogModel;
 import main.models.RacerModel;
 import main.models.ResultModel;
 import main.models.StartLogModel;
-
-import java.time.Duration;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
-
 public class Service {
     DAO dao = new DAO();
     public List<StartLogModel> startLogModelList = dao.getTimeInfoStart();
     public List<EndLogModel> endLogModelList = dao.getTimeInfoEnd();
-
-
     public List<ResultModel> getRacersList() {
-
-        ClassLoader classLoader = Service.class.getClassLoader();
         List<RacerModel> racerModelList = dao.getListOfRacers();
-        List<StartLogModel> listStartLog = dao.getTimeInfoStart();
-        List<EndLogModel> listEndLog = dao.getTimeInfoEnd();
         List<ResultModel> resultModelList = racerModelList.stream()
                 .map(rm ->
                 {
@@ -39,14 +27,9 @@ public class Service {
                     String dateEnd = endLogModelList.stream().filter(le -> le.getAbbr().equals(r.getAbbreviation())).findAny().orElse(null).getDate();
                     r.setTimeStartResult(timeStart, dateStart);
                     r.setTimeEndResult(timeEnd, dateEnd);
-                    r.setDurationTime();
-                    r.setDurationTimeString();
-                    Duration duration = r.getDurationTime();
-                    r.getDurationTimeString(duration);
-                }).sorted(Comparator.comparing(ResultModel::getDurationTime))
+                }).peek(r->r.setDurationTime())
+                .sorted(Comparator.comparing(ResultModel::getDurationTime))
                 .toList();
-
     return resultModelList;
-
     }
 }

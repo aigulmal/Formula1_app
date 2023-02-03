@@ -1,18 +1,9 @@
 package main.models;
-
 public class RacerModel {
-
-
     private String racerAbbreviation;
     private String racerName;
     private String racerTeam;
     public RacerModel(){}
-
-    public RacerModel(String racerAbbreviation, String racerName, String racerTeam) {
-        this.racerAbbreviation = racerAbbreviation;
-        this.racerName = racerName;
-        this.racerTeam = racerTeam;
-    }
     public String getRacerAbbreviation() {
         return racerAbbreviation;
     }
@@ -29,7 +20,6 @@ public class RacerModel {
     public void setRacerTeam(String racerTeam) {
         this.racerTeam = racerTeam;
     }
-
     @Override
     public String toString() {
         return "Racer {" +

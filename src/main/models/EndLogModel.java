@@ -1,5 +1,4 @@
 package main.models;
-
 public class EndLogModel {
     private String racerAbbreviation;
     private String endDate;
@@ -22,7 +21,6 @@ public class EndLogModel {
     public void setDate(String date) {
         this.endDate = date;
     }
-
     @Override
     public String toString() {
         return "Time {" +
